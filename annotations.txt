@@ -1,0 +1,12 @@
+
+docs
+https://help.marvelapp.com/hc/en-us/articles/360000624605-Get-started-with-the-Developer-API
+https://developer.marvel.com/docs#!/public
+
+doc que me ajudou a usar a key
+-> https://speca.io/speca/marvel-public-api-v1
+
+
+get images
+-> https://developer.marvel.com/documentation/images
+example -> http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73/portrait_xlarge.jpg

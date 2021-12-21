@@ -1,0 +1,6 @@
+#(ts+privateKey+publicKey)
+TS=foo
+PUBLIC_KEY=07e3e205bebd46de31d15ee9a76d85c2
+PRIVATE_KEY=cb116416e7b6451df4226e110970d61e15dcf22f
+KEY=$TS$PRIVATE_KEY$PUBLIC_KEY 
+echo -n $KEY | md5sum
