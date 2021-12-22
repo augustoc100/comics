@@ -1,1 +1,8 @@
 <h1>TESTE</h1>
+
+<% @comics.each do |comic| %>
+<%= comic.id %>
+<%= comic.title %>
+<image src=<%= comic.image_path %>>
+<%= comic.date %>
+<% end %>
