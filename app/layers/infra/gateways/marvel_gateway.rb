@@ -7,7 +7,7 @@ module Infra
     class MarvelGateway
       URL = 'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&noVariants=false&orderBy=-focDate'
 
-      def initialize(attributes)
+      def initialize(attributes = {})
         @http_client = attributes.fetch(:http_client, ::Infra::HttpClient.new)
         @url = attributes.fetch(:url, URL)
         @ts = attributes.fetch(:ts, DateTime.now.to_i.to_s)

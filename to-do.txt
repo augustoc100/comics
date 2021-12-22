@@ -1,10 +1,10 @@
 - [x] Do the request
 - [x] Ajust the order of the comics received
-- Add bootstrap and adjust the view
-- litle adjusts
+- [x] Add bootstrap and adjust the view
 - Add the search by name and search the comics by name
+- Do the pagination
 - Hide the secrets
 - Creates the dockerfile
-- Do the pagination
 
 - Creates the like part with coockies
+- litle adjusts
