@@ -1,7 +1,7 @@
 module Infra
   module Repositories
     class ComicsRepository
-      def test
+      def find_all
         'foo'
       end
     end
