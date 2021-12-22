@@ -8,9 +8,16 @@ describe Infra::Gateways::MarvelGateway do
       http_client = spy('http_client')
       url = 'some_url'
 
-      described_class.new(http_client: http_client).find_all
+      described_class.new(
+        http_client: http_client,
+        url: url,
+        ts: 'foo',
+        private_key: 'bar',
+        api_key: 'baz'
+      ).find_all
 
-      expect(http_client).to have_received(:get).with(url)
+      expected_url = "#{url}&ts=foo&apikey=baz&hash=6df23dc03f9b54cc38a0fc1483df6e21"
+      expect(http_client).to have_received(:get).with(expected_url)
     end
 
     it 'returns only the result data' do
