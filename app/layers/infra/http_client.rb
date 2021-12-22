@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Infra
   class HttpClient
     def initialize(http_adapter: Faraday)

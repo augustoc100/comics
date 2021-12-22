@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Domain
   class Comics
     attr_reader :title, :date, :image_path, :id
