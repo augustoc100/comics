@@ -11,7 +11,7 @@ describe Infra::HttpClient do
       allow(http_adapter).to receive(:get).and_return(response)
       described_class.new(http_adapter: http_adapter).get(url)
 
-      expect(http_adapter).to have_received(:get).with(url)
+      expect(http_adapter).to have_received(:get).with(url, params = {}, headers = {})
     end
 
     it 'tranforms the response into a symbolized hash' do

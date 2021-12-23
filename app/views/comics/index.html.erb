@@ -1,12 +1,15 @@
+<% flash.each do |type, msg| %>
+  <div class="alert alert-danger">
+    <%= msg %>
+  </div>
+<% end %>
 <h1>TESTE</h1>
 
 
-<%# <label for="search">search</label> %>
-<%# <input id="search" type="text"/> %>
 <%= form_tag root_path, method: 'get' do%>
-<%= label_tag :char, 'search for a char'%>
-<%= text_field_tag :char, params[:char]%>
-<%= submit_tag("char", name: nil)%>
+<%= label_tag :character_name, 'search for a character_name'%>
+<%= text_field_tag :character_name, params[:character_name]%>
+<%= submit_tag("character_name", name: nil)%>
 <% end %>
 
 <% @comics.each do |comic| %>

@@ -10,7 +10,7 @@ module Infra
       end
 
       def find_all(character_name: '')
-        comics_data = @marvel_gateway.find_all
+        comics_data = @marvel_gateway.find_all(character_name: character_name)
 
         comics_data.map do |data|
           ::Domain::Comics.new(prepare_data(data))
@@ -23,7 +23,7 @@ module Infra
         {
           id: response_data.fetch(:id),
           title: response_data.fetch(:title),
-          date: response_data.fetch(:dates).find { _1[:type] == 'onsaleDate'}[:date],
+          date: response_data.fetch(:dates).find { _1[:type] == 'focDate'}[:date],
           image: adjust_image_path(response_data.fetch(:thumbnail))
         }
       end
