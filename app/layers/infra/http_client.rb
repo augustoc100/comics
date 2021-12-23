@@ -6,7 +6,7 @@ module Infra
       @http_adapter = http_adapter
     end
 
-    def get(url, params={}, headers={})
+    def get(url, params = {}, headers = {})
       response = @http_adapter.get(url, params, headers)
 
       parse_body(response)

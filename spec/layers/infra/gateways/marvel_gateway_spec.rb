@@ -7,10 +7,10 @@ describe Infra::Gateways::MarvelGateway do
     it 'delegates the request to the http client' do
       http_client = spy('http_client')
       url = 'some_url'
-hash = '6df23dc03f9b54cc38a0fc1483df6e21'
-ts = 'foo'
-private_key = 'bar'
-api_key = 'baz'
+      hash = '6df23dc03f9b54cc38a0fc1483df6e21'
+      ts = 'foo'
+      private_key = 'bar'
+      api_key = 'baz'
 
       described_class.new(
         http_client: http_client,
@@ -19,7 +19,7 @@ api_key = 'baz'
         private_key: private_key,
         api_key: api_key
       ).find_all
-      params = {ts: ts, apikey: api_key,hash: hash}
+      params = { ts: ts, apikey: api_key, hash: hash }
       expect(http_client).to have_received(:get).with(url, params)
     end
 
@@ -45,15 +45,16 @@ api_key = 'baz'
         full_response = build_full_response
         comics_url = 'comics_url'
         char_url = 'char_url'
-        first_char_id = 111222333
+        first_char_id = 111_222_333
         char_result = build_char_result(first_char_id)
         hash = '6df23dc03f9b54cc38a0fc1483df6e21'
         ts = 'foo'
         private_key = 'bar'
         api_key = 'baz'
-        params = {ts: ts, apikey: api_key,hash: hash}
+        params = { ts: ts, apikey: api_key, hash: hash }
         allow(http_client).to receive(:get).with(char_url, params.merge(name: char_name)).and_return(char_result)
-        allow(http_client).to receive(:get).with( comics_url, params.merge(characters: first_char_id)).and_return(build_full_response)
+        allow(http_client).to receive(:get).with(comics_url,
+                                                 params.merge(characters: first_char_id)).and_return(build_full_response)
         result = described_class.new(
           http_client: http_client,
           comics_url: comics_url,
@@ -63,19 +64,19 @@ api_key = 'baz'
           api_key: api_key
         ).find_all(character_name: char_name)
 
-        expect(http_client).to have_received(:get).with( comics_url, params.merge(characters: first_char_id))
+        expect(http_client).to have_received(:get).with(comics_url, params.merge(characters: first_char_id))
       end
     end
   end
 
-  def build_char_result(id = 1009268)
+  def build_char_result(id = 1_009_268)
     {
       "code": 200,
-      "status": "Ok",
-      "copyright": "© 2021 MARVEL",
-      "attributionText": "Data provided by Marvel. © 2021 MARVEL",
-      "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2021 MARVEL</a>",
-      "etag": "74dadabfd9c324e56b932a0015d3811282a73e9b",
+      "status": 'Ok',
+      "copyright": '© 2021 MARVEL',
+      "attributionText": 'Data provided by Marvel. © 2021 MARVEL',
+      "attributionHTML": '<a href="http://marvel.com">Data provided by Marvel. © 2021 MARVEL</a>',
+      "etag": '74dadabfd9c324e56b932a0015d3811282a73e9b',
       "data": {
         "offset": 0,
         "limit": 20,
@@ -84,11 +85,11 @@ api_key = 'baz'
         "results": [
           {
             "id": id,
-            "name": "Deadpool"
+            "name": 'Deadpool'
           },
           {
             "id": 1234,
-            "name": "Deadpool2"
+            "name": 'Deadpool2'
           }
         ]
       }

@@ -3,7 +3,6 @@
 class SearchComicsError < StandardError
 end
 
-
 module Infra
   module Gateways
     class MarvelGateway
@@ -31,7 +30,6 @@ module Infra
         end
 
         data = comics_response.fetch(:data).fetch(:results)
-
       rescue StandardError => e
         p e.message
         raise SearchComicsError, e.message
