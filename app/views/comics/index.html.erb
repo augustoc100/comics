@@ -17,7 +17,7 @@ margin-top: 1rem;
 width: 10rem
 }
 
-.my-image:hover {
+figure:hover .my-image {
   border: .7rem solid #e62429;
 }
 
@@ -28,6 +28,16 @@ body {
 .my-context {
   position: relative
 }
+
+figure:hover .fig-content {
+  display: inline
+}
+.fig-content {
+  color: black;
+  background-color: white;
+  width: 157px;
+  display: none
+}
 </style>
 
 
@@ -36,8 +46,11 @@ body {
   <div class='row row-cols-5'>
     <% @comics.each do |comic| %>
       <div class='col'>
+        <figure class='figure'>
         <%= image_tag(comic.image_path, alt: comic.title, class: 'img-thumbnail my-image') %>
+        <figcaption class='figure-caption fig-content'> <%= comic.title%> </figcaption>
 
+        </figure>
       </div>
     <% end %>
   </div>
