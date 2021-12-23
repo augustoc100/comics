@@ -1,6 +1,13 @@
 <h1>TESTE</h1>
 
-<button class='btn btn-primary'>VRAU</button>
+
+<%# <label for="search">search</label> %>
+<%# <input id="search" type="text"/> %>
+<%= form_tag root_path, method: 'get' do%>
+<%= label_tag :char, 'search for a char'%>
+<%= text_field_tag :char, params[:char]%>
+<%= submit_tag("char", name: nil)%>
+<% end %>
 
 <% @comics.each do |comic| %>
 <%= comic.id %>

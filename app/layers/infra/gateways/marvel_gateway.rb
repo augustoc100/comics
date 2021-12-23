@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'digest'
-
 module Infra
   module Gateways
     class MarvelGateway
@@ -30,7 +28,7 @@ module Infra
       end
 
       def prepare_url
-        "#{@url}&ts=#{@ts}&apikey=#{@api_key}&hash=#{@hash}"
+        "#{@url}&ts=#{@ts}&apikey=#{@api_key}&hash=#{@hash}&characters=1009268"
       end
 
       # def result
