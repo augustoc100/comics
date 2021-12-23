@@ -2,7 +2,7 @@
 - [x] Ajust the order of the comics received
 - [x] Add bootstrap and adjust the view
 - [x] Add the search by name and search the comics by name
-- Adjust the layout
+- [x] Adjust the layout
 - Do the pagination
 - Hide the secrets
 - Creates the dockerfile

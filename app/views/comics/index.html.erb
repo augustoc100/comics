@@ -3,18 +3,52 @@
     <%= msg %>
   </div>
 <% end %>
-<h1>TESTE</h1>
+
+<style>
+.custom-btn {
+  margin-top: 1rem;
+font-weight: bolder;
+  color: #e62429;
+  width: 10rem
+}
+
+.my-image {
+margin-top: 1rem;
+width: 10rem
+}
+
+.my-image:hover {
+  border: .7rem solid #e62429;
+}
+
+body {
+  background-color: gray;
+}
+
+.my-context {
+  position: relative
+}
+</style>
 
 
-<%= form_tag root_path, method: 'get' do%>
-<%= label_tag :character_name, 'search for a character_name'%>
-<%= text_field_tag :character_name, params[:character_name]%>
-<%= submit_tag("character_name", name: nil)%>
-<% end %>
+<div class='container my-content'>
 
-<% @comics.each do |comic| %>
-<%= comic.id %>
-<%= comic.title %>
-<image src=<%= comic.image_path %>>
-<%= comic.date %>
-<% end %>
+  <div class='row row-cols-5'>
+    <% @comics.each do |comic| %>
+      <div class='col'>
+        <%= image_tag(comic.image_path, alt: comic.title, class: 'img-thumbnail my-image') %>
+
+      </div>
+    <% end %>
+  </div>
+  <div class='row'>
+    <div class='col-3'>
+      <button class='btn btn-light custom-btn'> PREVIOUS PAGE </button>
+    </div>
+    <div class='col-6'> </div>
+    <div class='col-3'>
+      <button class=' btn btn-light custom-btn'> NEXT PAGE </button>
+    </div>
+  </div>
+</div>
+

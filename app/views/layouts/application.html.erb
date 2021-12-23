@@ -14,6 +14,35 @@
   </head>
 
   <body>
+
+    <style>
+.nav-header {
+  background-color: #e62429;
+  height: 10rem;
+  width: 100%;
+  top: 0;
+}
+
+.logo {
+  margin: 1rem auto 1rem auto;
+}
+</style>
+
+<div class='nav-header'>
+<ul class="logo nav justify-content-center">
+  <li>
+    <%= image_tag "marvel_logo.png", class: 'nav-item logo' %>
+
+  </li>
+</ul>
+<ul class="nav justify-content-center">
+  <li class='nav-item'>
+    <%= form_tag root_path, method: 'get', class: 'd-flex' do%>
+      <%= text_field_tag :character_name, params[:character_name], class: 'form-control me-2 col-4'%>
+    <% end %>
+  </li>
+</ul>
+</div>
     <%= yield %>
   </body>
 </html>
