@@ -20,7 +20,7 @@ describe Infra::Gateways::MarvelGateway do
         api_key: api_key
       ).find_all
       params = { ts: ts, apikey: api_key, hash: hash }
-      expect(http_client).to have_received(:get).with(url, params)
+      expect(http_client).to have_received(:get).with(url, hash_including(params))
     end
 
     it 'returns only the result data' do
@@ -54,7 +54,7 @@ describe Infra::Gateways::MarvelGateway do
         params = { ts: ts, apikey: api_key, hash: hash }
         allow(http_client).to receive(:get).with(char_url, params.merge(name: char_name)).and_return(char_result)
         allow(http_client).to receive(:get).with(comics_url,
-                                                 params.merge(characters: first_char_id)).and_return(build_full_response)
+                                                 params.merge(characters: first_char_id, limit: 20, offset: 0)).and_return(build_full_response)
         result = described_class.new(
           http_client: http_client,
           comics_url: comics_url,
@@ -64,7 +64,37 @@ describe Infra::Gateways::MarvelGateway do
           api_key: api_key
         ).find_all(character_name: char_name)
 
-        expect(http_client).to have_received(:get).with(comics_url, params.merge(characters: first_char_id))
+        expect(http_client).to have_received(:get).with(comics_url, params.merge(characters: first_char_id, limit: 20, offset: 0))
+      end
+    end
+
+    context 'when receiving the page number' do
+      it 'calls the character api and pass the page number' do
+        http_client = spy('http_client')
+        full_response = build_full_response
+        comics_url = 'comics_url'
+        first_char_id = 111_222_333
+        char_result = build_char_result(first_char_id)
+        hash = '6df23dc03f9b54cc38a0fc1483df6e21'
+        ts = 'foo'
+        private_key = 'bar'
+        api_key = 'baz'
+        params = { ts: ts, apikey: api_key, hash: hash }
+        allow(http_client).to receive(:get).and_return(build_full_response)
+        result = described_class.new(
+          http_client: http_client,
+          comics_url: comics_url,
+          ts: ts,
+          private_key: private_key,
+          api_key: api_key
+        ).find_all(page: 2)
+
+        pagination_params = {
+          limit: 20,
+          offset: 20
+        }
+        expected_params =  params.merge(pagination_params)
+        expect(http_client).to have_received(:get).with(comics_url,expected_params)
       end
     end
   end

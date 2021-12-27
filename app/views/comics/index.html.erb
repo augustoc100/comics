@@ -7,14 +7,14 @@
 <style>
 .custom-btn {
   margin-top: 1rem;
-font-weight: bolder;
+  font-weight: bolder;
   color: #e62429;
   width: 10rem
 }
 
 .my-image {
-margin-top: 1rem;
-width: 10rem
+  margin-top: 1rem;
+  width: 10rem
 }
 
 figure:hover .my-image {
@@ -56,11 +56,11 @@ figure:hover .fig-content {
   </div>
   <div class='row'>
     <div class='col-3'>
-      <button class='btn btn-light custom-btn'> PREVIOUS PAGE </button>
+      <a href=<%= @search.previous_page%>  class=' btn btn-light custom-btn'> PREVIOUS PAGE </a>
     </div>
-    <div class='col-6'> </div>
+    <div class='col-6'>-</div>
     <div class='col-3'>
-      <button class=' btn btn-light custom-btn'> NEXT PAGE </button>
+      <a href=<%= @search.next_page%>  class=' btn btn-light custom-btn'> NEXT PAGE </a>
     </div>
   </div>
 </div>

@@ -9,8 +9,8 @@ module Infra
         @marvel_gateway = atributes.fetch(:marvel_gateway, ::Infra::Gateways::MarvelGateway.new)
       end
 
-      def find_all(character_name: '')
-        comics_data = @marvel_gateway.find_all(character_name: character_name)
+      def find_all(character_name: '', page: 0)
+        comics_data = @marvel_gateway.find_all(character_name: character_name, page: page)
 
         comics_data.map do |data|
           ::Domain::Comics.new(prepare_data(data))

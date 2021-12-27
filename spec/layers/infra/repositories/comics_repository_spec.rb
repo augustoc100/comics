@@ -26,7 +26,19 @@ describe Infra::Repositories::ComicsRepository do
         allow(marvel_gateway).to receive(:find_all).and_return(response)
         comics = described_class.new(marvel_gateway: marvel_gateway).find_all(character_name: character_name)
 
-        expect(marvel_gateway).to have_received(:find_all).with(character_name: character_name)
+        expect(marvel_gateway).to have_received(:find_all).with(hash_including(character_name: character_name))
+      end
+    end
+
+    context 'when receiving the page number' do
+      it 'delegates the the page to the gateway' do
+        marvel_gateway = spy('marvel_gateway')
+        character_name = 'deadpool'
+        response = build_response
+        allow(marvel_gateway).to receive(:find_all).and_return(response)
+        comics = described_class.new(marvel_gateway: marvel_gateway).find_all(page: 1)
+
+        expect(marvel_gateway).to have_received(:find_all).with(hash_including(page: 1))
       end
     end
   end
