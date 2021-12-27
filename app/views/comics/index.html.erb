@@ -40,7 +40,6 @@ figure:hover .fig-content {
 }
 </style>
 
-
 <div class='container my-content'>
 
   <div class='row row-cols-5'>
@@ -48,8 +47,7 @@ figure:hover .fig-content {
       <div class='col'>
         <figure class='figure'>
         <%= image_tag(comic.image_path, alt: comic.title, class: 'img-thumbnail my-image') %>
-        <figcaption class='figure-caption fig-content'> <%= comic.title%> </figcaption>
-
+        <figcaption class='figure-caption fig-content'> <%= comic.liked %> && <%= comic.title%> </figcaption>
         </figure>
       </div>
     <% end %>
