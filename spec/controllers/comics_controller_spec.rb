@@ -15,7 +15,9 @@ describe ComicsController, type: :request do
   context 'when the name of a character is passed'
   it 'calls the repository with the character name' do
     character_name = 'deadpool'
-    expect_any_instance_of(::Infra::Repositories::ComicsRepository).to receive(:find_all).with(character_name: character_name, page: 1).and_return([])
+    expect_any_instance_of(::Infra::Repositories::ComicsRepository).to receive(:find_all).with(
+      character_name: character_name, page: 1
+    ).and_return([])
 
     get root_path, params: { character_name: character_name }
   end

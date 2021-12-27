@@ -28,10 +28,11 @@ module Infra
         else
           char_response = @http_client.get(@char_url, prepare_parameters(name: character_name))
           char_data = char_response.fetch(:data).fetch(:results)[0]
-          comics_response = @http_client.get(@comics_url, prepare_parameters(page_parameters(page).merge(characters: char_data[:id])))
+          comics_response = @http_client.get(@comics_url,
+                                             prepare_parameters(page_parameters(page).merge(characters: char_data[:id])))
         end
 
-         comics_response.fetch(:data).fetch(:results)
+        comics_response.fetch(:data).fetch(:results)
       rescue StandardError => e
         raise SearchComicsError, e.message
       end

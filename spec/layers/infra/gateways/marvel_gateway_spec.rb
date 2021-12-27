@@ -54,7 +54,8 @@ describe Infra::Gateways::MarvelGateway do
         params = { ts: ts, apikey: api_key, hash: hash }
         allow(http_client).to receive(:get).with(char_url, params.merge(name: char_name)).and_return(char_result)
         allow(http_client).to receive(:get).with(comics_url,
-                                                 params.merge(characters: first_char_id, limit: 20, offset: 0)).and_return(build_full_response)
+                                                 params.merge(characters: first_char_id, limit: 20,
+                                                              offset: 0)).and_return(build_full_response)
         result = described_class.new(
           http_client: http_client,
           comics_url: comics_url,
@@ -64,7 +65,8 @@ describe Infra::Gateways::MarvelGateway do
           api_key: api_key
         ).find_all(character_name: char_name)
 
-        expect(http_client).to have_received(:get).with(comics_url, params.merge(characters: first_char_id, limit: 20, offset: 0))
+        expect(http_client).to have_received(:get).with(comics_url,
+                                                        params.merge(characters: first_char_id, limit: 20, offset: 0))
       end
     end
 
@@ -93,8 +95,8 @@ describe Infra::Gateways::MarvelGateway do
           limit: 20,
           offset: 20
         }
-        expected_params =  params.merge(pagination_params)
-        expect(http_client).to have_received(:get).with(comics_url,expected_params)
+        expected_params = params.merge(pagination_params)
+        expect(http_client).to have_received(:get).with(comics_url, expected_params)
       end
     end
   end
