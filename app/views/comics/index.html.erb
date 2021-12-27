@@ -17,8 +17,24 @@
   width: 10rem
 }
 
-figure:hover .my-image {
+.like-btn {
+  background-color: pink
+}
+
+.figure:hover .my-image {
+  border-bottom: .7rem solid #e62429;
+}
+
+.figure:hover .fig-content {
+  display: inline
+}
+
+.liked-figure .my-image {
   border: .7rem solid #e62429;
+}
+
+.liked-figure:hover .fig-content {
+  display: inline
 }
 
 body {
@@ -29,9 +45,6 @@ body {
   position: relative
 }
 
-figure:hover .fig-content {
-  display: inline
-}
 .fig-content {
   color: black;
   background-color: white;
@@ -45,9 +58,12 @@ figure:hover .fig-content {
   <div class='row row-cols-5'>
     <% @comics.each do |comic| %>
       <div class='col'>
-        <figure class='figure'>
+        <figure class="<%= comic.liked ? 'liked-figure' : 'figure'%>">
         <%= image_tag(comic.image_path, alt: comic.title, class: 'img-thumbnail my-image') %>
         <figcaption class='figure-caption fig-content'> <%= comic.liked %> && <%= comic.title%> </figcaption>
+        <div>
+          <%= button_to 'foo', @search.current_url, params: { comic_id: comic.id, liked: !comic.liked, title: comic.title}, class: 'like-btn'%>
+        </div>
         </figure>
       </div>
     <% end %>

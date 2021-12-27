@@ -9,10 +9,7 @@ module Domain
       @title = attributes.fetch(:title)
       @date =  attributes.fetch(:date).to_date
       @image_path = attributes.fetch(:image)
-    end
-
-    def set_like(liked)
-      @liked = liked == true
+      @liked = attributes.fetch(:liked).to_s == 'true'
     end
   end
 end

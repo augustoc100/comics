@@ -6,9 +6,11 @@ describe Infra::Repositories::ComicsRepository do
   context 'when searching for comics' do
     it 'returns the comics found' do
       marvel_gateway = instance_double('marvel_gateway')
+      like_repository = instance_double('like_repository')
+      allow(like_repository).to receive(:all).and_return({})
       response = build_response
       allow(marvel_gateway).to receive(:find_all).and_return(response)
-      comics = described_class.new(marvel_gateway: marvel_gateway).find_all
+      comics = described_class.new(marvel_gateway: marvel_gateway, like_repository: like_repository).find_all
 
       comic = comics.first
       expect(comics.size).to eq 1
@@ -24,9 +26,13 @@ describe Infra::Repositories::ComicsRepository do
         character_name = 'deadpool'
         response = build_response
         allow(marvel_gateway).to receive(:find_all).and_return(response)
-        comics = described_class.new(marvel_gateway: marvel_gateway).find_all(character_name: character_name)
+        like_repository = instance_double('like_repository')
+        allow(like_repository).to receive(:all).and_return({})
 
-        expect(marvel_gateway).to have_received(:find_all).with(hash_including(character_name: character_name))
+        comics = described_class.new(marvel_gateway: marvel_gateway,
+                                     like_repository: like_repository).find_all(character_name: character_name)
+
+        expect(marvel_gateway).to have_received(:find_all).with(character_name: character_name, page: 1)
       end
     end
 
@@ -36,7 +42,11 @@ describe Infra::Repositories::ComicsRepository do
         character_name = 'deadpool'
         response = build_response
         allow(marvel_gateway).to receive(:find_all).and_return(response)
-        comics = described_class.new(marvel_gateway: marvel_gateway).find_all(page: 1)
+        like_repository = instance_double('like_repository')
+        allow(like_repository).to receive(:all).and_return({})
+
+        comics = described_class.new(marvel_gateway: marvel_gateway,
+                                     like_repository: like_repository).find_all(page: 1)
 
         expect(marvel_gateway).to have_received(:find_all).with(hash_including(page: 1))
       end
