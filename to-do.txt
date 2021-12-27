@@ -5,7 +5,7 @@
 - [x] Adjust the layout
 - [x] Do the pagination
 - [x] Creates the dockerfile
-
-- Creates the like part with coockies
+- [x] Hide the secrets
+- [x] Creates the like part with coockies
 - litle adjusts
-- Hide the secrets
+- litle css adjusts

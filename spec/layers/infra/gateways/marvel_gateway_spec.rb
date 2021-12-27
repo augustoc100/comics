@@ -83,7 +83,7 @@ describe Infra::Gateways::MarvelGateway do
         api_key = 'baz'
         params = { ts: ts, apikey: api_key, hash: hash }
         allow(http_client).to receive(:get).and_return(build_full_response)
-        result = described_class.new(
+        described_class.new(
           http_client: http_client,
           comics_url: comics_url,
           ts: ts,

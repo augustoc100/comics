@@ -7,7 +7,7 @@ module Infra
   module Gateways
     class MarvelGateway
       COMICS_URL = 'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&noVariants=false&orderBy=-focDate'
-      CHAR_URL = 'https://gateway.marvel.com:443/v1/public/characters?name=deadpool&orderBy=name'
+      CHAR_URL = 'https://gateway.marvel.com:443/v1/public/characters?orderBy=name'
       DEFAULT_PAGE = 1
       ITEMS_PER_PAGE = 20
 
