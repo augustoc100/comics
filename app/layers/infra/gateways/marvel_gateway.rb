@@ -12,12 +12,14 @@ module Infra
       ITEMS_PER_PAGE = 20
 
       def initialize(attributes = {})
+        Rails.application.credentials.marvel.api_key
+
         @http_client = attributes.fetch(:http_client, ::Infra::HttpClient.new)
         @comics_url = attributes.fetch(:comics_url, COMICS_URL)
         @char_url = attributes.fetch(:char_url, CHAR_URL)
         @ts = attributes.fetch(:ts, DateTime.now.to_i.to_s)
-        @api_key = attributes.fetch(:api_key, '07e3e205bebd46de31d15ee9a76d85c2')
-        @private_key = attributes.fetch(:private_key, 'cb116416e7b6451df4226e110970d61e15dcf22f')
+        @api_key = attributes.fetch(:api_key, Rails.application.credentials.marvel.api_key)
+        @private_key = attributes.fetch(:private_key, Rails.application.credentials.marvel.private_key)
 
         @hash = attributes.fetch(:hash, build_hash)
       end
